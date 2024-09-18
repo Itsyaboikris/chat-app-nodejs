@@ -3,6 +3,7 @@ import "dotenv/config";
 import { authRouter } from "./routes/auth.routes.js";
 import connect from "./db/mongodb.js";
 import { messagesRouter } from "./routes/messages.route.js";
+import { usersRouter } from "./routes/user.route.js";
 import cookieParser from "cookie-parser";
 
 const app = express();
@@ -13,6 +14,7 @@ app.use(cookieParser());
 
 app.use("/api/auth", authRouter);
 app.use("/api/messages", messagesRouter);
+app.use("/api/users", usersRouter);
 
 app.listen(PORT, () => {
     connect();
