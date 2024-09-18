@@ -4,10 +4,11 @@ import { authRouter } from "./routes/auth.routes.js";
 import connect from "./db/mongodb.js";
 
 const app = express();
+const PORT = process.env.PORT || 5000;
+
+app.use(express.json());
 
 app.use("/api/auth", authRouter);
-
-const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
     connect();
