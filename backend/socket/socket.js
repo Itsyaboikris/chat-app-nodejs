@@ -1,7 +1,6 @@
 import { Server } from "socket.io";
 import http from "http";
 import express from "express";
-import { disconnect } from "process";
 
 const app = express();
 
@@ -27,7 +26,7 @@ io.on("connection", (socket) => {
 
     io.emit("getOnlineUsers", Object.keys(userSocketMap));
 
-    socket.on(disconnect, () => {
+    socket.on("disconnect", () => {
         console.log(`User Disconnected: ${socket.id}`);
         delete userSocketMap[userId];
         io.emit("getOnlineUsers", Object.keys(userSocketMap));
